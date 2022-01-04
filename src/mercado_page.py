@@ -53,10 +53,12 @@ class MercadoPage(object):
     #     self._driver.find_element(By.ID, 'newCookieDisclaimerButton').click()
 
     def select_location_guerrero(self):
-        WebDriverWait(self._driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="modal"]/div[2]/div[6]/div[2]/a[2]')))
-        select_location = self._driver.find_element(By.XPATH, '//*[@id="modal"]/div[2]/div[6]/div[2]/a[2]')
+        WebDriverWait(self._driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="modal"]/div[2]/a[13]')))
+        select_location = self._driver.find_element(By.XPATH, '//*[@id="modal"]/div[2]/a[13]')
         select_location.click()
         
+        # //*[@id="modal"]/div[2]/a[13]
+        # //*[@id="modal"]/div[2]/div[6]/div[2]/a[2]
 
     # TODO: make one method 'select_location_(location)' for every state using XPATH
 
