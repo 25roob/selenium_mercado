@@ -17,7 +17,7 @@ class MercadoTest(unittest.TestCase):
         chrome_options.add_argument('--headless')
         chrome_options.add_argument('--no-sandbox')
         chrome_options.add_argument('--disable-dev-shm-usage')
-        cls.driver = webdriver.Chrome(service = Service('/usr/local/share/chromedriver'), chrome_options=chrome_options)
+        cls.driver = webdriver.Chrome(service = Service('/usr/local/share/chromedriver'), options=chrome_options)
         cls.driver.maximize_window()
     
     def test_search(self):
@@ -34,7 +34,7 @@ class MercadoTest(unittest.TestCase):
 
         # mercado.close_coockiedisclaimer()
 
-        mercado.see_all_locations()
+        # mercado.see_all_locations()
         mercado.select_location_guerrero()
 
         mercado.select_condition_nuevo()
