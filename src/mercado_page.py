@@ -4,6 +4,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC 
 
+
 class MercadoPage(object):
     def __init__(self, driver):
         self._driver = driver
@@ -24,6 +25,19 @@ class MercadoPage(object):
     def word_searched(self):
         word_searched = self._driver.find_element(By.XPATH, '//*[@id="root-app"]/div/div[1]/aside/div[1]/h1')
         return word_searched.text.lower()
+
+    # This fuunction receives a list of possible working xpaths
+    def _search_by_xpath(self, xpaths):
+            # WebDriverWait(self._driver, 10).until(EC.element_to_be_clickable((By.XPATH, xpath)))
+            # elemento = self._driver.find_element(By.XPATH, xpath)
+            # elemento.click()
+            for xpath in xpaths: 
+                try:
+                    elemento = self._driver.find_element(By.XPATH, xpath)
+                    elemento.click()
+                    break
+                except:
+                    continue  
 
     def open(self):
         self._driver.get(self._url)
@@ -46,16 +60,26 @@ class MercadoPage(object):
                        
         xpath1 = '//*[@id="root-app"]/div/div[1]/aside/section/div[15]/ul/li[10]/a'
         xpath2 = '//*[@id="root-app"]/div/div[1]/aside/section/div[16]/ul/li[10]/a'
+        xpath3 = '//*[@id="root-app"]/div/div[1]/aside/form/div[15]/ul/li[10]/a'
+        xpath4 = '//*[@id="root-app"]/div/div[1]/aside/form/div[16]/ul/li[10]/a'
 
-        def _search_by_xpath(xpath):
-            WebDriverWait(self._driver, 5).until(EC.element_to_be_clickable((By.XPATH, xpath)))
-            see_all = self._driver.find_element(By.XPATH, xpath)
-            see_all.click()
+        xpaths = [xpath1, xpath2, xpath3, xpath4]
 
-        try:
-            _search_by_xpath(xpath1)
-        except:
-            _search_by_xpath(xpath2)
+        # def _search_by_xpath(xpath):
+        #     # WebDriverWait(self._driver, 10).until(EC.element_to_be_clickable((By.XPATH, xpath)))
+        #     see_all = self._driver.find_element(By.XPATH, xpath)
+        #     see_all.click()
+
+        
+        # for ixpath in xpaths: 
+        #     try:
+        #         MercadoPage._search_by_xpath(self, ixpath)
+        #         break
+        #     except:
+        #         continue         
+        
+        MercadoPage._search_by_xpath(self, xpaths)
+          
 
     # def close_coockiedisclaimer(self):
     #     self._driver.find_element(By.ID, 'newCookieDisclaimerButton').click()
@@ -64,33 +88,58 @@ class MercadoPage(object):
 
         MercadoPage.see_all_locations(self)
         
-        def _search_by_xpath(xpath):
-            WebDriverWait(self._driver, 5).until(EC.element_to_be_clickable((By.XPATH, xpath)))
-            select_location = self._driver.find_element(By.XPATH, xpath)
-            select_location.click()
+        # def _search_by_xpath(xpath):
+        #     WebDriverWait(self._driver, 5).until(EC.element_to_be_clickable((By.XPATH, xpath)))
+        #     select_location = self._driver.find_element(By.XPATH, xpath)
+        #     select_location.click()
 
         xpath1 = '//*[@id="modal"]/div[2]/a[13]'
         xpath2 = '//*[@id="modal"]/div[2]/div[6]/div[2]/a[2]'
+        #         //*[@id="modal"]/div[2]/div[6]/div[2]/a[2]
+        #         //*[@id="modal"]/div[2]/a[13]
+
+        xpaths = [xpath1, xpath2]
                 
-        try:
-            _search_by_xpath(xpath1)
-        except:
-            _search_by_xpath(xpath2)
+        # try:
+        #     MercadoPage._search_by_xpath(self, xpath1)
+        # except:
+        #     MercadoPage._search_by_xpath(self, xpath2)
+
+        MercadoPage._search_by_xpath(self, xpaths)
 
         
     # TODO: make one method 'select_location_(location)' for every state using XPATH
 
     def select_condition_nuevo(self):
-        WebDriverWait(self._driver, 5).until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div[1]/aside/section/div[6]/ul/li[1]/a')))
-        condition_button = self._driver.find_element(By.XPATH, '/html/body/main/div/div[1]/aside/section/div[6]/ul/li[1]/a')
-        condition_button.click()
+        # WebDriverWait(self._driver, 5).until(EC.element_to_be_clickable((By.XPATH, '/html/body/main/div/div[1]/aside/section/div[6]/ul/li[1]/a')))
+        # condition_button = self._driver.find_element(By.XPATH, '/html/body/main/div/div[1]/aside/section/div[6]/ul/li[1]/a')
+        # condition_button.click()
 
-    # TODO: make a method simmilar to the one above for used condition
+        xpath1 = '/html/body/main/div/div[1]/aside/section/div[6]/ul/li[1]/a'
+        xpath2 = '//*[@id="root-app"]/div/div[1]/aside/form/div[6]/ul/li[1]/button'
+
+        xpaths = [xpath1, xpath2]
+
+        MercadoPage._search_by_xpath(self, xpaths)
+
+
+    # TODO: make a method simmilar to the one above for the "used" condition
 
     def sorting_option(self, option):
         sort_select_button = self._driver.find_element(By.XPATH, '//*[@id="root-app"]/div/div[1]/section/div[1]/div/div/div/div[2]/div/div/button')
         sort_select_button.click()
         # TODO add a way to click in the different options
+        if option == 'importance':
+            pass
+        elif option == 'asc_price':
+            pass
+        elif option == 'desc_price':
+            select_mayor_precio = self._driver.find_element(By.XPATH, '//*[@id="root-app"]/div/div/section/div[1]/div/div/div/div[2]/div/div/div/ul/a[2]')
+            select_mayor_precio.click()
+            WebDriverWait(self._driver, 10).until(EC.text_to_be_present_in_element((By.XPATH, '//*[@id="root-app"]/div/div/section/div[1]/div/div/div/div[2]/div/div/button/span'), 'Mayor precio'))
+            self._driver.implicitly_wait(3)
+        else:
+            raise ValueError('Unexpected option\n\nValid options: \n* importance\n* asc_price\n* desc_price')
 
     def scrape_results(self):
         pass
