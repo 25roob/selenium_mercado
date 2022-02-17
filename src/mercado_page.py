@@ -31,6 +31,7 @@ class MercadoPage(object):
             # WebDriverWait(self._driver, 10).until(EC.element_to_be_clickable((By.XPATH, xpath)))
             # elemento = self._driver.find_element(By.XPATH, xpath)
             # elemento.click()
+        try:
             for xpath in xpaths: 
                 try:
                     elemento = self._driver.find_element(By.XPATH, xpath)
@@ -38,6 +39,8 @@ class MercadoPage(object):
                     break
                 except:
                     continue  
+        except:
+            raise ValueError("The none of the registered XPATHs matches, the list shoud be actualized")
 
     def open(self):
         self._driver.get(self._url)
