@@ -27,7 +27,7 @@ class MercadoPage(object):
         return word_searched.text.lower()
 
     # This fuunction receives a list of possible working xpaths
-    def _search_by_xpath(self, xpaths):
+    def _search_by_xpaths(self, xpaths):
             # WebDriverWait(self._driver, 10).until(EC.element_to_be_clickable((By.XPATH, xpath)))
             # elemento = self._driver.find_element(By.XPATH, xpath)
             # elemento.click()
@@ -65,7 +65,7 @@ class MercadoPage(object):
 
         xpaths = [xpath1, xpath2, xpath3, xpath4]
 
-        # def _search_by_xpath(xpath):
+        # def _search_by_xpaths(xpath):
         #     # WebDriverWait(self._driver, 10).until(EC.element_to_be_clickable((By.XPATH, xpath)))
         #     see_all = self._driver.find_element(By.XPATH, xpath)
         #     see_all.click()
@@ -73,12 +73,12 @@ class MercadoPage(object):
         
         # for ixpath in xpaths: 
         #     try:
-        #         MercadoPage._search_by_xpath(self, ixpath)
+        #         MercadoPage._search_by_xpaths(self, ixpath)
         #         break
         #     except:
         #         continue         
         
-        MercadoPage._search_by_xpath(self, xpaths)
+        MercadoPage._search_by_xpaths(self, xpaths)
           
 
     # def close_coockiedisclaimer(self):
@@ -88,7 +88,7 @@ class MercadoPage(object):
 
         MercadoPage.see_all_locations(self)
         
-        # def _search_by_xpath(xpath):
+        # def _search_by_xpaths(xpath):
         #     WebDriverWait(self._driver, 5).until(EC.element_to_be_clickable((By.XPATH, xpath)))
         #     select_location = self._driver.find_element(By.XPATH, xpath)
         #     select_location.click()
@@ -101,11 +101,11 @@ class MercadoPage(object):
         xpaths = [xpath1, xpath2]
                 
         # try:
-        #     MercadoPage._search_by_xpath(self, xpath1)
+        #     MercadoPage._search_by_xpaths(self, xpath1)
         # except:
-        #     MercadoPage._search_by_xpath(self, xpath2)
+        #     MercadoPage._search_by_xpaths(self, xpath2)
 
-        MercadoPage._search_by_xpath(self, xpaths)
+        MercadoPage._search_by_xpaths(self, xpaths)
 
         
     # TODO: make one method 'select_location_(location)' for every state using XPATH
@@ -120,7 +120,7 @@ class MercadoPage(object):
 
         xpaths = [xpath1, xpath2]
 
-        MercadoPage._search_by_xpath(self, xpaths)
+        MercadoPage._search_by_xpaths(self, xpaths)
 
 
     # TODO: make a method simmilar to the one above for the "used" condition
