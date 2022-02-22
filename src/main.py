@@ -41,7 +41,7 @@ class MercadoTest(unittest.TestCase):
 
         self.driver.implicitly_wait(10)
 
-        mercado.sorting_option('importance')
+        mercado.sorting_option('desc_price')
         
 
     @classmethod

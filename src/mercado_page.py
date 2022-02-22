@@ -31,16 +31,15 @@ class MercadoPage(object):
             # WebDriverWait(self._driver, 10).until(EC.element_to_be_clickable((By.XPATH, xpath)))
             # elemento = self._driver.find_element(By.XPATH, xpath)
             # elemento.click()
-        try:
-            for xpath in xpaths: 
-                try:
-                    elemento = self._driver.find_element(By.XPATH, xpath)
-                    elemento.click()
-                    break
-                except:
-                    continue  
-        except:
-            raise ValueError("The none of the registered XPATHs matches, the list shoud be actualized")
+        for xpath in xpaths: 
+            try:
+                elemento = self._driver.find_element(By.XPATH, xpath)
+                elemento.click()
+                return None
+            except:
+                continue  
+        
+        raise ValueError("None of the registered XPATHs matches, the list shoud be actualized")
 
     def open(self):
         self._driver.get(self._url)
@@ -65,8 +64,10 @@ class MercadoPage(object):
         xpath2 = '//*[@id="root-app"]/div/div[1]/aside/section/div[16]/ul/li[10]/a'
         xpath3 = '//*[@id="root-app"]/div/div[1]/aside/form/div[15]/ul/li[10]/a'
         xpath4 = '//*[@id="root-app"]/div/div[1]/aside/form/div[16]/ul/li[10]/a'
+        xpath5 = '//*[@id="root-app"]/div/div[1]/aside/form/div[14]/ul/li[10]/a'
+        xpath6 = '//*[@id="modal"]/div[2]/a[13]'
 
-        xpaths = [xpath1, xpath2, xpath3, xpath4]
+        xpaths = [xpath1, xpath2, xpath3, xpath4, xpath5, xpath6]
 
         # def _search_by_xpaths(xpath):
         #     # WebDriverWait(self._driver, 10).until(EC.element_to_be_clickable((By.XPATH, xpath)))
@@ -129,17 +130,22 @@ class MercadoPage(object):
     # TODO: make a method simmilar to the one above for the "used" condition
 
     def sorting_option(self, option):
-        sort_select_button = self._driver.find_element(By.XPATH, '//*[@id="root-app"]/div/div[1]/section/div[1]/div/div/div/div[2]/div/div/button')
+        xpath_s_s_button = '//*[@id="root-app"]/div/div[1]/section/div[1]/div/div/div/div[2]/div/div/button'
+        xpath_s_o_mayor_precio = '//*[@id="root-app"]/div/div/section/div[1]/div/div/div/div[2]/div/div/div/ul/a[2]'
+        xpath_confirm_option = '//*[@id="root-app"]/div/div/section/div[1]/div/div/div/div[2]/div/div/button/span'
+
+        sort_select_button = self._driver.find_element(By.XPATH, xpath_s_s_button)
         sort_select_button.click()
+
         # TODO add a way to click in the different options
         if option == 'importance':
             pass
         elif option == 'asc_price':
             pass
         elif option == 'desc_price':
-            select_mayor_precio = self._driver.find_element(By.XPATH, '//*[@id="root-app"]/div/div/section/div[1]/div/div/div/div[2]/div/div/div/ul/a[2]')
+            select_mayor_precio = self._driver.find_element(By.XPATH, xpath_s_o_mayor_precio)
             select_mayor_precio.click()
-            WebDriverWait(self._driver, 10).until(EC.text_to_be_present_in_element((By.XPATH, '//*[@id="root-app"]/div/div/section/div[1]/div/div/div/div[2]/div/div/button/span'), 'Mayor precio'))
+            WebDriverWait(self._driver, 10).until(EC.text_to_be_present_in_element((By.XPATH, xpath_confirm_option), 'Mayor precio'))
             self._driver.implicitly_wait(3)
         else:
             raise ValueError('Unexpected option\n\nValid options: \n* importance\n* asc_price\n* desc_price')
