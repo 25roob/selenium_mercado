@@ -68,7 +68,7 @@ class MercadoPage(object):
         xpath4 = '//*[@id="root-app"]/div/div[1]/aside/form/div[16]/ul/li[10]/a'
         xpath5 = '//*[@id="root-app"]/div/div[1]/aside/form/div[14]/ul/li[10]/a'
         xpath6 = '//*[@id="modal"]/div[2]/a[13]'
-        xpath7 = '//*[@id="root-app"]/div/div[1]/aside/form/div[15]/ul/li[10]/a'
+        xpath7 = '//*[@id="root-app"]/div/div[1]/aside/form/div[16]/ul/li[10]/a'
         
 
         xpaths = [xpath1, xpath2, xpath3, xpath4, xpath5, xpath6, xpath7]
