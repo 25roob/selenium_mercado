@@ -3,9 +3,11 @@ A bot to test and scrape the website mercadolibre.com
 
 ## Usage:
 Clone the repository:
+
 `https://github.com/25roob/selenium_mercado.git `
 
 Activate a Python virtual enviroment and install the packages needed
+
 `pip install -r requirements.txt `
 
 Run main.py
